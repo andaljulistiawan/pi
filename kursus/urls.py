@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls import include
+from django.shortcuts import render_to_response
+
+
+def home(request):
+    return render_to_response(template_name='home.html')
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^jet/', include('jet.urls', 'jet')),
+    url(r'login/', admin.site.urls),
+    url(r'^$', home),
 ]
+
+admin.site.site_header = '77 Music School'
